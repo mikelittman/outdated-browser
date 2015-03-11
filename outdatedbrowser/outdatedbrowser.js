@@ -50,6 +50,16 @@ var outdatedBrowser = function(options) {
         disableSelector = this.defaultOpts.disableSelector;
     };//end if options
 
+    // IF AJAX with request ERROR > insert english default
+    /*
+    var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
+        + '<p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
+        + '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
+    */
+    var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
+        + '<p>Update your browser to access this website. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
+        ;//+ '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
+
 
     //Define opacity and fadeIn/fadeOut functions
     var done = true;
@@ -121,6 +131,7 @@ var outdatedBrowser = function(options) {
 
     //Check AJAX Options: if languagePath == '' > use no Ajax way, html is needed inside <div id="outdated">
     if( languagePath === ' ' || languagePath.length == 0 ){
+        document.getElementById("outdated").innerHTML = ajaxEnglishDefault;
         startStylesAndEvents();
     }else{
         grabFile(languagePath);
@@ -168,17 +179,6 @@ var outdatedBrowser = function(options) {
         }
 
     }//end styles and events
-
-
-    // IF AJAX with request ERROR > insert english default
-    /*
-    var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
-        + '<p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
-        + '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
-    */
-    var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
-        + '<p>Update your browser to access this website. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
-        ;//+ '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
 
 
     //** AJAX FUNCTIONS - Bulletproof Ajax by Jeremy Keith **
