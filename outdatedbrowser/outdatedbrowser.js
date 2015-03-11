@@ -16,7 +16,8 @@ var outdatedBrowser = function(options) {
         color: '#ffffff',
         lowerThan: 'transform',
         languagePath: '../outdatedbrowser/lang/en.html',
-        disableSelector: ''
+        disableSelector: '',
+        customMessage: ''
     }
 
     if (options) {
@@ -36,6 +37,7 @@ var outdatedBrowser = function(options) {
         this.defaultOpts.lowerThan = options.lowerThan;
         this.defaultOpts.languagePath = options.languagePath;
         this.defaultOpts.disableSelector = options.disableSelector;
+        this.defaultOpts.customMessage = options.customMessage;
 
         bkgColor = this.defaultOpts.bgColor;
         txtColor = this.defaultOpts.color;
@@ -48,6 +50,7 @@ var outdatedBrowser = function(options) {
         cssProp = this.defaultOpts.lowerThan;
         languagePath = this.defaultOpts.languagePath;
         disableSelector = this.defaultOpts.disableSelector;
+        customMessage = this.defaultOpts.customMessage;
     };//end if options
 
     // IF AJAX with request ERROR > insert english default
@@ -56,8 +59,14 @@ var outdatedBrowser = function(options) {
         + '<p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
         + '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
     */
+
+    var alertMessage = 'Update your browser to access this website.';
+
+    if(this.customMessage.length != 0)
+        alertMessage = this.customMessage;
+
     var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
-        + '<p>Update your browser to access this website. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
+        + '<p>'+alertMessage+' <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
         ;//+ '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
 
 
