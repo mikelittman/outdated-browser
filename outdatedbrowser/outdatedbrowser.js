@@ -44,6 +44,7 @@ var outdatedBrowser = function(options) {
         cssProp = this.defaultOpts.lowerThan;
         languagePath = this.defaultOpts.languagePath;
         disableSelector = this.defaultOpts.disableSelector;
+        customMessage = this.defaultOpts.customMessage;
     } else {
         bkgColor = this.defaultOpts.bgColor;
         txtColor = this.defaultOpts.color;
@@ -62,8 +63,8 @@ var outdatedBrowser = function(options) {
 
     var alertMessage = 'Update your browser to access this website.';
 
-    if(this.customMessage.length != 0)
-        alertMessage = this.customMessage;
+    if(customMessage.length != 0)
+        alertMessage = customMessage;
 
     var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
         + '<p>'+alertMessage+' <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
