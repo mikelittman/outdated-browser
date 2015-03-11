@@ -15,7 +15,8 @@ var outdatedBrowser = function(options) {
         bgColor: '#f25648',
         color: '#ffffff',
         lowerThan: 'transform',
-        languagePath: '../outdatedbrowser/lang/en.html'
+        languagePath: '../outdatedbrowser/lang/en.html',
+        disableSelector: ''
     }
 
     if (options) {
@@ -34,16 +35,19 @@ var outdatedBrowser = function(options) {
         this.defaultOpts.color = options.color;
         this.defaultOpts.lowerThan = options.lowerThan;
         this.defaultOpts.languagePath = options.languagePath;
+        this.defaultOpts.disableSelector = options.disableSelector;
 
         bkgColor = this.defaultOpts.bgColor;
         txtColor = this.defaultOpts.color;
         cssProp = this.defaultOpts.lowerThan;
         languagePath = this.defaultOpts.languagePath;
+        disableSelector = this.defaultOpts.disableSelector;
     } else {
         bkgColor = this.defaultOpts.bgColor;
         txtColor = this.defaultOpts.color;
         cssProp = this.defaultOpts.lowerThan;
         languagePath = this.defaultOpts.languagePath;
+        disableSelector = this.defaultOpts.disableSelector;
     };//end if options
 
 
@@ -155,13 +159,26 @@ var outdatedBrowser = function(options) {
             this.style.color = txtColor;
             this.style.backgroundColor = bkgColor;
         };
+
+
+        //Hide all elements
+        var hideElements = document.querySelectorAll(this.disableSelector);
+        for(var i=0; i<hideElements.length; i++){
+            hideElements[i].style.cssText = 'opacity: 0.75; pointer-events: none; user-select: none;';
+        }
+
     }//end styles and events
 
 
     // IF AJAX with request ERROR > insert english default
+    /*
     var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
         + '<p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
         + '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
+    */
+    var ajaxEnglishDefault = '<h6>Your browser is out-of-date!</h6>'
+        + '<p>Update your browser to access this website. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>'
+        ;//+ '<p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>';
 
 
     //** AJAX FUNCTIONS - Bulletproof Ajax by Jeremy Keith **
@@ -210,10 +227,3 @@ var outdatedBrowser = function(options) {
 
 ////////END of outdatedBrowser function
 };
-
-
-
-
-
-
-
